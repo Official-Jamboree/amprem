@@ -3,284 +3,183 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Debug Login</title>
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    background: #090910;
-    color: #fff;
-    padding: 20px;
-    max-width: 500px;
-    margin: 0 auto;
-  }
-  h1 { color: #b7a0ff; }
-  input {
-    width: 100%;
-    padding: 12px;
-    margin: 8px 0;
-    border: 1px solid #333;
-    border-radius: 8px;
-    background: #1a1a2a;
-    color: #fff;
-    font-size: 14px;
-    box-sizing: border-box;
-  }
-  button {
-    width: 100%;
-    padding: 14px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 8px;
-    background: linear-gradient(100deg, #c4b5fd, #8b8cf7);
-    color: #111;
-    font-weight: bold;
-    font-size: 14px;
-    cursor: pointer;
-  }
-  .box {
-    background: #131421;
-    padding: 20px;
-    border-radius: 12px;
-    margin: 10px 0;
-    border: 1px solid #333;
-  }
-  .log {
-    background: #000;
-    color: #0f0;
-    font-family: monospace;
-    font-size: 12px;
-    padding: 12px;
-    border-radius: 8px;
-    margin-top: 20px;
-    max-height: 300px;
-    overflow-y: auto;
-    white-space: pre-wrap;
-    word-break: break-all;
-  }
-  .hidden { display: none; }
-</style>
+<meta name="theme-color" content="#090910">
+<title>AM PREMIUM — Member Vault</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+<canvas id="particles"></canvas>
 
-<h1>🧪 Debug Login</h1>
+<header class="topbar">
+  <div class="brand">
+    <div class="brandmark">✦</div>
+    <div>AM <em>PREMIUM</em></div>
+  </div>
+  <div class="system">
+    <span><i class="dot"></i>SYSTEM ONLINE</span>
+  </div>
+</header>
 
-<!-- LOGIN FORM -->
-<div id="loginBox" class="box">
-  <h3>Login</h3>
-  <input type="text" id="username" placeholder="Username">
-  <input type="password" id="password" placeholder="Password">
-  <button onclick="doLogin()">LOGIN</button>
-  <button onclick="showRegister()" style="background:#333;color:#fff;">Belum punya akun? Daftar</button>
+<main>
+  <section class="login-view" id="loginView">
+    <div class="copy">
+      <div class="kicker">Private access · Member portal</div>
+      <h1>
+        YOUR ACCESS<br>
+        TO THE <span class="gradient">EXTRA</span><br>
+        ORDINARY.
+      </h1>
+      <p class="intro">
+        Satu gerbang. Dua kategori. Pengalaman premium.
+        Masuk ke vault untuk menjelajahi koleksi AM Plus
+        dan Regular dalam satu dashboard eksklusif.
+      </p>
+      <div class="secureline">
+        ◈ A private member experience by AM Premium
+      </div>
+    </div>
+
+    <div class="login-card">
+      <div class="card-head">
+        <small>AM / ACCESS GATE</small>
+        <span class="badge" id="modeBadge">✦ LOGIN</span>
+      </div>
+
+      <div class="orb-stage">
+        <div class="orbit"></div>
+        <div class="orbit two"></div>
+        <div class="orb"></div>
+      </div>
+
+      <div id="loginFields">
+        <label class="field-label" for="username">Username</label>
+        <div class="inputwrap" style="margin-bottom: 14px;">
+          <span>◉</span>
+          <input id="username" type="text" placeholder="Masukkan username..." autocomplete="username">
+        </div>
+
+        <label class="field-label" for="password">Access password</label>
+        <div class="inputwrap">
+          <span>▣</span>
+          <input id="password" type="password" placeholder="Masukkan sandi akses..." autocomplete="current-password">
+          <button class="eye" type="button" id="togglePass">◎</button>
+        </div>
+
+        <button class="primary" type="button" id="doLogin">
+          ENTER THE VAULT <span style="float:right">↗</span>
+        </button>
+
+        <button class="secondary" type="button" id="showRegister">
+          Belum punya akun? Daftar di sini
+        </button>
+      </div>
+
+      <div id="registerFields" class="hidden">
+        <label class="field-label" for="regUsername">Username baru</label>
+        <div class="inputwrap" style="margin-bottom: 14px;">
+          <span>◉</span>
+          <input id="regUsername" type="text" placeholder="Pilih username..." autocomplete="off">
+        </div>
+
+        <label class="field-label" for="regPassword">Password</label>
+        <div class="inputwrap" style="margin-bottom: 14px;">
+          <span>▣</span>
+          <input id="regPassword" type="password" placeholder="Buat password..." autocomplete="new-password">
+        </div>
+
+        <label class="field-label" for="regPassword2">Konfirmasi Password</label>
+        <div class="inputwrap">
+          <span>▣</span>
+          <input id="regPassword2" type="password" placeholder="Ulangi password..." autocomplete="new-password">
+        </div>
+
+        <button class="primary" type="button" id="doRegister">
+          BUAT AKUN <span style="float:right">↗</span>
+        </button>
+
+        <button class="secondary" type="button" id="backToLogin">
+          ← Kembali ke Login
+        </button>
+      </div>
+
+      <div class="microcopy">
+        ✧ AM PLUS · REGULAR · MEMBER VAULT
+      </div>
+    </div>
+  </section>
+
+  <section class="dash" id="dashboard">
+    <div class="dash-title">
+      <div>
+        <div class="kicker">Member dashboard</div>
+        <h2>Welcome, <span class="gradient" id="welcomeUser">User</span></h2>
+        <p>Pilih kategori akun yang ingin kamu buka.</p>
+      </div>
+      <div style="display: flex; gap: 10px; align-items: center;">
+        <div class="session">● MEMBER MODE</div>
+        <button class="btn-logout" id="logoutBtn">LOGOUT</button>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <small>KATEGORI</small>
+        <strong>02 <span>types</span></strong>
+      </div>
+      <div class="stat">
+        <small>AKUN TERSEDIA</small>
+        <strong class="gradient" id="totalCount">00</strong>
+      </div>
+      <div class="stat">
+        <small>KLAIM SAYA</small>
+        <strong style="color: var(--cyan)" id="myClaims">00</strong>
+      </div>
+    </div>
+
+    <div class="toolbar">
+      <label class="search">
+        <span>⌕</span>
+        <input id="search" placeholder="Cari AM Plus atau Regular...">
+      </label>
+      <div class="filters">
+        <button class="filter active" data-filter="all">Semua</button>
+        <button class="filter" data-filter="available">Tersedia</button>
+        <button class="filter" data-filter="claimed">Diambil</button>
+      </div>
+    </div>
+
+    <div class="account-grid" id="accountGrid"></div>
+
+    <div class="notice">
+      <strong>INFO</strong><br>
+      Data akun di-load dari file <code>akunplus.json</code> dan <code>akunregular.json</code> di repo ini.
+      Setiap user punya daftar klaim sendiri yang tersimpan di browser (localStorage).
+    </div>
+  </section>
+</main>
+
+<footer>
+  <span>© 2026 AM PREMIUM</span>
+  <span>PRIVATE ACCESS EXPERIENCE</span>
+  <span>DESIGNED FOR THE EXTRAORDINARY ✦</span>
+</footer>
+
+<div class="modal-overlay" id="accountModal">
+  <div class="modal">
+    <div class="modal-head">
+      <h3 id="modalTitle">Detail Akun</h3>
+      <button class="modal-close" id="modalClose">✕</button>
+    </div>
+    <div id="modalBody"></div>
+  </div>
 </div>
 
-<!-- REGISTER FORM -->
-<div id="registerBox" class="box hidden">
-  <h3>Daftar</h3>
-  <input type="text" id="regUsername" placeholder="Username baru">
-  <input type="password" id="regPassword" placeholder="Password">
-  <input type="password" id="regPassword2" placeholder="Konfirmasi Password">
-  <button onclick="doRegister()">DAFTAR</button>
-  <button onclick="showLogin()" style="background:#333;color:#fff;">← Kembali</button>
-</div>
+<div class="toast" id="toast"></div>
 
-<!-- DASHBOARD -->
-<div id="dashboardBox" class="box hidden">
-  <h3>✅ Dashboard</h3>
-  <p>Selamat datang, <strong id="welcome">User</strong>!</p>
-  <p style="color:#8ef0be;">Login berhasil 🎉</p>
-  <button onclick="logout()" style="background:#ff6b6b;">LOGOUT</button>
-</div>
-
-<!-- LOG -->
-<div class="log" id="log">[log] Memulai...</div>
-
-<script>
-// ============ LOG FUNCTION ============
-function log(msg) {
-  const el = document.getElementById('log');
-  el.textContent += '\n[log] ' + msg;
-  console.log(msg);
-}
-
-log('Script loaded ✅');
-
-// ============ HASH PASSWORD ============
-function hashPass(p) {
-  return btoa(p + '_am_salt_2026');
-}
-
-// ============ STORAGE ============
-function getUsers() {
-  try {
-    const data = localStorage.getItem('am_users');
-    return data ? JSON.parse(data) : {};
-  } catch (e) {
-    log('❌ Error getUsers: ' + e.message);
-    return {};
-  }
-}
-
-function saveUsers(users) {
-  localStorage.setItem('am_users', JSON.stringify(users));
-  log('✅ Users disimpan: ' + Object.keys(users).join(', '));
-}
-
-function getSession() {
-  return localStorage.getItem('am_session');
-}
-
-function setSession(u) {
-  localStorage.setItem('am_session', u);
-}
-
-function clearSession() {
-  localStorage.removeItem('am_session');
-}
-
-// ============ UI SWITCH ============
-function showRegister() {
-  log('Klik DAFTAR');
-  document.getElementById('loginBox').classList.add('hidden');
-  document.getElementById('registerBox').classList.remove('hidden');
-}
-
-function showLogin() {
-  log('Klik KEMBALI');
-  document.getElementById('registerBox').classList.add('hidden');
-  document.getElementById('loginBox').classList.remove('hidden');
-}
-
-function showDashboard(username) {
-  log('Buka dashboard: ' + username);
-  document.getElementById('loginBox').classList.add('hidden');
-  document.getElementById('registerBox').classList.add('hidden');
-  document.getElementById('dashboardBox').classList.remove('hidden');
-  document.getElementById('welcome').textContent = username;
-}
-
-// ============ LOGIN ============
-function doLogin() {
-  log('Klik LOGIN');
-  
-  const u = document.getElementById('username').value.trim();
-  const p = document.getElementById('password').value;
-  
-  log('Username: "' + u + '"');
-  log('Password length: ' + p.length);
-  
-  if (!u || !p) {
-    alert('⚠️ Isi username dan password!');
-    return;
-  }
-  
-  const users = getUsers();
-  log('Users di storage: ' + Object.keys(users).join(', '));
-  
-  if (!users[u]) {
-    alert('❌ Username "' + u + '" tidak ditemukan! Daftar dulu.');
-    log('❌ Username tidak ada di storage');
-    return;
-  }
-  
-  const hashed = hashPass(p);
-  log('Hash input: ' + hashed);
-  log('Hash storage: ' + users[u].pass);
-  
-  if (users[u].pass !== hashed) {
-    alert('❌ Password salah!');
-    log('❌ Password tidak match');
-    return;
-  }
-  
-  log('✅ LOGIN SUKSES!');
-  setSession(u);
-  showDashboard(u);
-  alert('✅ Selamat datang, ' + u + '!');
-}
-
-// ============ REGISTER ============
-function doRegister() {
-  log('Klik DAFTAR');
-  
-  const u = document.getElementById('regUsername').value.trim();
-  const p1 = document.getElementById('regPassword').value;
-  const p2 = document.getElementById('regPassword2').value;
-  
-  log('Username: "' + u + '"');
-  log('Password 1 length: ' + p1.length);
-  log('Password 2 length: ' + p2.length);
-  
-  if (!u || !p1 || !p2) {
-    alert('⚠️ Isi semua field!');
-    return;
-  }
-  
-  if (u.length < 3) {
-    alert('⚠️ Username minimal 3 karakter!');
-    return;
-  }
-  
-  if (p1.length < 4) {
-    alert('⚠️ Password minimal 4 karakter!');
-    return;
-  }
-  
-  if (p1 !== p2) {
-    alert('❌ Password tidak sama!');
-    return;
-  }
-  
-  const users = getUsers();
-  
-  if (users[u]) {
-    alert('❌ Username sudah dipakai!');
-    return;
-  }
-  
-  users[u] = {
-    pass: hashPass(p1),
-    created: Date.now()
-  };
-  
-  saveUsers(users);
-  
-  log('✅ Register sukses');
-  alert('✅ Akun berhasil dibuat! Silakan login dengan username: ' + u);
-  
-  // Reset form
-  document.getElementById('regUsername').value = '';
-  document.getElementById('regPassword').value = '';
-  document.getElementById('regPassword2').value = '';
-  
-  // Balik ke login + auto isi username
-  document.getElementById('username').value = u;
-  document.getElementById('password').value = '';
-  showLogin();
-}
-
-// ============ LOGOUT ============
-function logout() {
-  log('Klik LOGOUT');
-  clearSession();
-  document.getElementById('username').value = '';
-  document.getElementById('password').value = '';
-  document.getElementById('loginBox').classList.remove('hidden');
-  document.getElementById('registerBox').classList.add('hidden');
-  document.getElementById('dashboardBox').classList.add('hidden');
-  alert('👋 Logout berhasil');
-}
-
-// ============ AUTO LOGIN ============
-window.addEventListener('load', () => {
-  log('Window loaded');
-  const session = getSession();
-  if (session && getUsers()[session]) {
-    log('Auto login: ' + session);
-    showDashboard(session);
-  }
-});
-
-log('Ready! Coba klik tombol.');
-</script>
+<script src="script.js"></script>
 </body>
 </html>
