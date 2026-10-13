@@ -368,7 +368,6 @@ h1 {
   letter-spacing: .05em;
 }
 
-/* REGISTER FORM */
 .register-form {
   display: none;
   margin-top: 20px;
@@ -721,10 +720,12 @@ h1 {
   display: flex;
   gap: 8px;
   margin-top: 10px;
+  flex-wrap: wrap;
 }
 
 .account-item .actions button {
   flex: 1;
+  min-width: 90px;
   padding: 8px;
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -735,10 +736,15 @@ h1 {
   transition: .2s;
 }
 
-.account-item .actions button:hover {
+.account-item .actions button:hover:not(:disabled) {
   border-color: var(--purple);
   color: var(--purple);
   background: #a78bfa0f;
+}
+
+.account-item .actions button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
 }
 
 .empty-state {
@@ -901,7 +907,7 @@ footer {
       </div>
     </div>
 
-    <form class="login-card" id="loginForm">
+    <div class="login-card" id="loginForm">
       <div class="card-head">
         <small>AM / ACCESS GATE</small>
         <span class="badge" id="modeBadge">✦ LOGIN</span>
@@ -943,7 +949,7 @@ footer {
           >◎</button>
         </div>
 
-        <button class="primary" type="submit">
+        <button class="primary" type="button" id="doLogin">
           ENTER THE VAULT <span style="float:right">↗</span>
         </button>
 
@@ -999,7 +1005,7 @@ footer {
       <div class="microcopy">
         ✧ AM PLUS · REGULAR · MEMBER VAULT
       </div>
-    </form>
+    </div>
   </section>
 
   <!-- DASHBOARD -->
@@ -1011,6 +1017,4 @@ footer {
         <p>Pilih kategori akun yang ingin kamu buka.</p>
       </div>
 
-      <div style="display: flex; gap: 10px; align-items: center;">
-        <div class="session">● MEMBER MODE</div>
-        <button class="b
+      <div st
