@@ -4,22 +4,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#090a10">
-<title>AM PREMIUM — Account Vault</title>
+<meta name="theme-color" content="#090910">
+<title>AM PREMIUM — Member Vault</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 :root {
-  --bg: #080910;
-  --panel: #11131d;
+  --bg: #090910;
+  --panel: #131421;
   --line: #ffffff18;
-  --text: #f5f6ff;
-  --muted: #9095aa;
-  --purple: #a78bfa;
-  --cyan: #71e6e2;
-  --green: #8df0c0;
+  --text: #f6f5ff;
+  --muted: #9296ad;
+  --purple: #b7a0ff;
+  --cyan: #76e8e1;
+  --green: #8ef0be;
 }
 
 * { box-sizing: border-box; }
@@ -27,11 +27,11 @@
 body {
   margin: 0;
   min-height: 100vh;
-  color: var(--text);
   background:
-    radial-gradient(ellipse at 15% 0%, #5b21b633, transparent 40%),
-    radial-gradient(ellipse at 90% 30%, #0e749022, transparent 35%),
+    radial-gradient(ellipse at 15% 0%, #7543d52b, transparent 40%),
+    radial-gradient(ellipse at 90% 40%, #087e8b20, transparent 35%),
     var(--bg);
+  color: var(--text);
   font-family: 'DM Sans', sans-serif;
   overflow-x: hidden;
 }
@@ -49,17 +49,17 @@ button { cursor: pointer; }
 }
 
 .topbar {
-  height: 76px;
-  padding: 0 clamp(18px, 5vw, 72px);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid var(--line);
-  background: #090a10c9;
-  backdrop-filter: blur(18px);
   position: sticky;
   top: 0;
   z-index: 10;
+  height: 74px;
+  padding: 0 clamp(18px, 5vw, 70px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--line);
+  background: #090910d9;
+  backdrop-filter: blur(18px);
 }
 
 .brand {
@@ -67,11 +67,11 @@ button { cursor: pointer; }
   align-items: center;
   gap: 12px;
   font: 700 14px 'Space Grotesk', sans-serif;
-  letter-spacing: .08em;
+  letter-spacing: .1em;
 }
 
 .brand em {
-  color: #b9a4ff;
+  color: var(--purple);
   font-style: normal;
 }
 
@@ -80,28 +80,25 @@ button { cursor: pointer; }
   height: 40px;
   display: grid;
   place-items: center;
-  border: 1px solid #c4b5fd77;
+  border: 1px solid #b7a0ff77;
   border-radius: 13px;
-  color: #ded4ff;
-  font-size: 21px;
+  color: #e1d7ff;
+  font-size: 22px;
   background: linear-gradient(140deg, #8b5cf633, #67e8f933);
   box-shadow: 0 0 25px #8b5cf822;
 }
 
 .system {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  color: #a9aec2;
+  color: #a6abc0;
   font-size: 10px;
-  letter-spacing: .12em;
+  letter-spacing: .1em;
 }
 
 .dot {
   display: inline-block;
   width: 7px;
   height: 7px;
-  margin-right: 6px;
+  margin-right: 7px;
   border-radius: 50%;
   background: var(--green);
   box-shadow: 0 0 12px var(--green);
@@ -112,51 +109,53 @@ main {
   z-index: 1;
   max-width: 1180px;
   margin: auto;
-  padding: 0 26px;
-}
-
-.login-view {
-  min-height: calc(100vh - 145px);
-  display: grid;
-  grid-template-columns: 1.05fr .95fr;
-  align-items: center;
-  gap: 45px;
-  padding: 40px 0 60px;
+  padding: 0 25px;
 }
 
 .kicker {
-  color: #b9a4ff;
-  font-size: 10px;
-  letter-spacing: .22em;
-  text-transform: uppercase;
   display: flex;
   align-items: center;
   gap: 10px;
+  color: var(--purple);
+  font-size: 10px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
 }
 
 .kicker::before {
   content: "";
-  width: 28px;
+  width: 26px;
   height: 1px;
   background: var(--purple);
 }
 
+.login-view {
+  min-height: calc(100vh - 140px);
+  display: grid;
+  grid-template-columns: 1.05fr .95fr;
+  align-items: center;
+  gap: 45px;
+  padding: 40px 0 55px;
+}
+
+.login-view.hidden { display: none; }
+
 h1 {
   margin: 23px 0;
-  font: 700 clamp(45px, 6vw, 78px)/.99 'Space Grotesk', sans-serif;
+  font: 700 clamp(44px, 6vw, 76px)/.99 'Space Grotesk', sans-serif;
   letter-spacing: -.065em;
 }
 
 .gradient {
   color: var(--purple);
-  background: linear-gradient(100deg, #e8dcff, #a78bfa 48%, #71e6e2);
+  background: linear-gradient(100deg, #e8ddff, #a78bfa 50%, #76e8e1);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .intro {
-  max-width: 455px;
+  max-width: 450px;
   color: var(--muted);
   font-size: 14px;
   line-height: 1.9;
@@ -164,7 +163,7 @@ h1 {
 
 .secureline {
   margin-top: 25px;
-  color: #a1a6ba;
+  color: #a2a7bb;
   font-size: 11px;
 }
 
@@ -178,7 +177,7 @@ h1 {
   border: 1px solid #ffffff1b;
   border-radius: 24px;
   background: linear-gradient(145deg, #191a2aee, #10111bd9);
-  box-shadow: 0 30px 100px #0008, inset 0 1px #ffffff0c;
+  box-shadow: 0 30px 100px #0008;
 }
 
 .login-card::before {
@@ -189,23 +188,21 @@ h1 {
   width: 70%;
   height: 1px;
   background: linear-gradient(90deg, transparent, #c4b5fd, transparent);
-  box-shadow: 0 0 30px var(--purple);
 }
 
 .card-head {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 10px;
 }
 
 .card-head small {
-  color: #999fb6;
+  color: #a2a6bb;
   font-size: 10px;
-  letter-spacing: .13em;
+  letter-spacing: .12em;
 }
 
-.secure-badge {
+.badge {
   padding: 7px 9px;
   border: 1px solid #6ee7b744;
   border-radius: 99px;
@@ -224,8 +221,8 @@ h1 {
 .orb {
   width: 112px;
   height: 112px;
-  border-radius: 50%;
   position: relative;
+  border-radius: 50%;
   background: radial-gradient(
     circle at 30% 24%,
     #f4edff 0,
@@ -287,7 +284,7 @@ h1 {
 
 .field-label {
   display: block;
-  margin: 0 0 9px;
+  margin-bottom: 9px;
   color: #c5c7d6;
   font-size: 11px;
 }
@@ -362,7 +359,6 @@ h1 {
 }
 
 .dash.active { display: block; }
-.login-view.hidden { display: none; }
 
 .dash-title {
   display: flex;
@@ -425,8 +421,6 @@ h1 {
   font: 400 12px 'DM Sans', sans-serif;
 }
 
-.stat .accent { color: #bcaaff; }
-
 .toolbar {
   display: flex;
   align-items: center;
@@ -481,94 +475,107 @@ h1 {
 
 .account-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 14px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
 }
 
 .account {
   position: relative;
   overflow: hidden;
-  padding: 18px;
+  padding: 23px;
   border: 1px solid var(--line);
-  border-radius: 17px;
-  background: linear-gradient(145deg, #151725, #10111a);
+  border-radius: 18px;
+  background: linear-gradient(145deg, #171827, #10111a);
   transition: .22s;
 }
 
 .account:hover {
   transform: translateY(-4px);
-  border-color: #a78bfa55;
+  border-color: #a78bfa66;
   box-shadow: 0 15px 40px #0004;
 }
+
+.account.plus { --card-accent: #c4b5fd; }
+.account.regular { --card-accent: #76e8e1; }
 
 .account-top {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 8px;
-  margin-bottom: 18px;
+  margin-bottom: 22px;
 }
 
 .account-icon {
-  width: 39px;
-  height: 39px;
+  width: 48px;
+  height: 48px;
   display: grid;
   place-items: center;
-  border: 1px solid #a78bfa22;
-  border-radius: 12px;
-  background: linear-gradient(145deg, #a78bfa26, #71e6e215);
-  color: #c8b7ff;
-  font-size: 17px;
+  border: 1px solid color-mix(in srgb, var(--card-accent), transparent 65%);
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--card-accent), transparent 90%);
+  color: var(--card-accent);
+  font-size: 23px;
 }
 
 .status {
-  padding: 6px 8px;
+  padding: 7px 9px;
   border: 1px solid #6ee7b72a;
   border-radius: 99px;
   background: #6ee7b70d;
   color: #91efc0;
   font-size: 9px;
-  letter-spacing: .04em;
 }
 
 .account h3 {
-  margin: 0 0 6px;
-  font: 600 16px 'Space Grotesk', sans-serif;
+  margin: 0 0 8px;
+  font: 600 24px 'Space Grotesk', sans-serif;
 }
 
 .account p {
-  margin: 0 0 17px;
+  margin: 0 0 22px;
   color: #8c92a9;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.countbox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  padding: 14px;
+  border: 1px dashed #ffffff1c;
+  border-radius: 11px;
+  background: #090a1199;
+  color: #9298af;
   font-size: 11px;
 }
 
-.fake-data {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  margin-bottom: 13px;
-  padding: 10px;
-  border: 1px dashed #ffffff1c;
-  border-radius: 9px;
-  background: #090a1199;
-  color: #858ba2;
-  font-size: 10px;
+.countbox strong {
+  color: var(--card-accent);
+  font: 600 17px 'Space Grotesk', sans-serif;
 }
 
 .claim {
   width: 100%;
-  padding: 11px;
-  border: 1px solid #a78bfa55;
-  border-radius: 10px;
-  background: #a78bfa12;
-  color: #d7cbff;
+  padding: 13px;
+  border: 1px solid color-mix(in srgb, var(--card-accent), transparent 55%);
+  border-radius: 11px;
+  background: color-mix(in srgb, var(--card-accent), transparent 91%);
+  color: var(--card-accent);
   font-size: 11px;
-  font-weight: 600;
+  font-weight: 700;
   transition: .2s;
 }
 
 .claim:hover { background: #a78bfa22; }
-.claim:disabled { opacity: .5; cursor: not-allowed; }
+
+.claim:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
 
 .notice {
   margin-top: 20px;
@@ -578,7 +585,7 @@ h1 {
   background: #a78bfa0a;
   color: #aaaec2;
   font-size: 11px;
-  line-height: 1.7;
+  line-height: 1.8;
 }
 
 .notice strong { color: #d7cbff; }
@@ -590,11 +597,11 @@ footer {
   justify-content: space-between;
   gap: 12px;
   flex-wrap: wrap;
-  padding: 22px clamp(18px, 5vw, 72px);
+  padding: 22px clamp(18px, 5vw, 70px);
   border-top: 1px solid var(--line);
   color: #656b82;
   font-size: 10px;
-  letter-spacing: .09em;
+  letter-spacing: .08em;
 }
 
 .toast {
@@ -643,7 +650,6 @@ footer {
   .intro { margin: auto; }
   .secureline { text-align: center; }
   .login-card { justify-self: center; max-width: 480px; }
-  .account-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
   .dash-title {
     align-items: flex-start;
@@ -653,7 +659,7 @@ footer {
 
 @media (max-width: 560px) {
   .topbar { height: 67px; padding: 0 16px; }
-  .system { font-size: 9px; gap: 8px; }
+  .system { font-size: 9px; }
   .brand { font-size: 12px; }
   .brandmark { width: 34px; height: 34px; }
   .login-view { padding: 38px 0; }
@@ -694,13 +700,14 @@ footer {
     <div class="brandmark">✦</div>
     <div>AM <em>PREMIUM</em></div>
   </div>
+
   <div class="system">
     <span><i class="dot"></i>SYSTEM ONLINE</span>
-    <span>V. 2.0</span>
   </div>
 </header>
 
 <main>
+  <!-- LOGIN SCREEN -->
   <section class="login-view" id="loginView">
     <div class="copy">
       <div class="kicker">Private access · Member portal</div>
@@ -712,20 +719,20 @@ footer {
       </h1>
 
       <p class="intro">
-        Satu gerbang. Pengalaman premium. Masuk ke vault
-        untuk menjelajahi koleksi akun yang tersedia dalam
-        satu dashboard eksklusif.
+        Satu gerbang. Dua kategori. Pengalaman premium.
+        Masuk ke vault untuk menjelajahi koleksi AM Plus
+        dan Regular dalam satu dashboard eksklusif.
       </p>
 
       <div class="secureline">
-        ◈ Protected member area · Designed for a seamless experience
+        ◈ A private member experience by AM Premium
       </div>
     </div>
 
     <form class="login-card" id="loginForm">
       <div class="card-head">
         <small>AM / ACCESS GATE</small>
-        <span class="secure-badge">✦ DEMO UI</span>
+        <span class="badge">✦ DEMO UI</span>
       </div>
 
       <div class="orb-stage">
@@ -734,9 +741,7 @@ footer {
         <div class="orb"></div>
       </div>
 
-      <label class="field-label" for="password">
-        Access password
-      </label>
+      <label class="field-label" for="password">Access password</label>
 
       <div class="inputwrap">
         <span aria-hidden="true">▣</span>
@@ -760,34 +765,36 @@ footer {
       </button>
 
       <div class="microcopy">
-        ✧ A PRIVATE EXPERIENCE BY AM PREMIUM
+        ✧ AM PLUS · REGULAR · MEMBER VAULT
       </div>
     </form>
   </section>
 
+  <!-- DASHBOARD -->
   <section class="dash" id="dashboard">
     <div class="dash-title">
       <div>
         <div class="kicker">Member dashboard</div>
         <h2>Welcome to the <span class="gradient">Vault.</span></h2>
-        <p>Semua yang kamu butuhkan, tersusun dalam satu tempat.</p>
+        <p>Pilih kategori akun yang ingin kamu buka.</p>
       </div>
+
       <div class="session">● DEMO PREVIEW MODE</div>
     </div>
 
     <div class="stats">
       <div class="stat">
-        <small>ACCOUNT TYPES</small>
-        <strong>03 <span>categories</span></strong>
+        <small>KATEGORI</small>
+        <strong>02 <span>types</span></strong>
       </div>
 
       <div class="stat">
-        <small>DEMO INVENTORY</small>
-        <strong class="accent" id="totalCount">09 <span>sample cards</span></strong>
+        <small>AKUN TERSEDIA</small>
+        <strong class="gradient" id="totalCount">00</strong>
       </div>
 
       <div class="stat">
-        <small>VAULT STATUS</small>
+        <small>STATUS VAULT</small>
         <strong style="color:var(--green)">ONLINE</strong>
       </div>
     </div>
@@ -797,8 +804,8 @@ footer {
         <span aria-hidden="true">⌕</span>
         <input
           id="search"
-          placeholder="Cari kategori akun..."
-          aria-label="Cari kategori akun"
+          placeholder="Cari AM Plus atau Regular..."
+          aria-label="Cari kategori"
         >
       </label>
 
@@ -813,8 +820,8 @@ footer {
 
     <div class="notice">
       <strong>PREVIEW NOTICE</strong><br>
-      Kartu ini menggunakan data contoh. Sistem login dan klaim
-      belum terhubung ke server atau file akun asli.
+      Kategori di bawah masih memakai data contoh.
+      Integrasi data akun dan proses klaim permanen memerlukan backend.
     </div>
   </section>
 </main>
@@ -828,7 +835,7 @@ footer {
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
-// PARTICLE BACKGROUND
+// ANIMATED BACKGROUND
 const canvas = document.getElementById('particles');
 const ctx = canvas.getContext('2d');
 let particles = [];
@@ -878,17 +885,27 @@ window.addEventListener('resize', resizeCanvas);
 resizeCanvas();
 drawParticles();
 
-// SAMPLE INVENTORY — REPLACE WITH AUTHORIZED DATA LATER
+// ONLY TWO CATEGORIES
+// Data akun asli belum dimasukkan.
 const accounts = [
-  { id: 1, name: 'AM Plus', desc: 'Premium access', icon: '✦', status: 'available' },
-  { id: 2, name: 'AM Ultra', desc: 'Premium access', icon: '◈', status: 'available' },
-  { id: 3, name: 'AM Studio', desc: 'Creative access', icon: '✧', status: 'available' },
-  { id: 4, name: 'Vault Alpha', desc: 'Member access', icon: '⬡', status: 'available' },
-  { id: 5, name: 'Vault Nova', desc: 'Member access', icon: '✺', status: 'available' },
-  { id: 6, name: 'Vault Prime', desc: 'Member access', icon: '✦', status: 'available' },
-  { id: 7, name: 'Special Pack', desc: 'Limited access', icon: '◇', status: 'available' },
-  { id: 8, name: 'Elite Pack', desc: 'Limited access', icon: '✧', status: 'available' },
-  { id: 9, name: 'Mystery Drop', desc: 'Surprise access', icon: '✷', status: 'available' }
+  {
+    id: 1,
+    name: 'AM Plus',
+    desc: 'Premium account collection',
+    icon: '✦',
+    type: 'plus',
+    status: 'available',
+    quantity: 0
+  },
+  {
+    id: 2,
+    name: 'Regular',
+    desc: 'Regular account collection',
+    icon: '◈',
+    type: 'regular',
+    status: 'available',
+    quantity: 0
+  }
 ];
 
 const grid = document.getElementById('accountGrid');
@@ -898,15 +915,13 @@ let toastTimer;
 
 function notify(message) {
   const toast = document.getElementById('toast');
-
   toast.textContent = message;
   toast.classList.add('show');
 
   clearTimeout(toastTimer);
-
   toastTimer = setTimeout(() => {
     toast.classList.remove('show');
-  }, 2600);
+  }, 2800);
 }
 
 function renderAccounts() {
@@ -924,21 +939,14 @@ function renderAccounts() {
     return matchesFilter && matchesSearch;
   });
 
-  grid.innerHTML = '';
+  grid.replaceChildren();
 
   if (filtered.length === 0) {
-    grid.innerHTML = `
-      <div style="
-        grid-column:1/-1;
-        text-align:center;
-        padding:45px;
-        color:#858ba3;
-        border:1px dashed #ffffff22;
-        border-radius:15px
-      ">
-        Tidak ada item yang cocok dengan pencarianmu.
-      </div>
-    `;
+    const empty = document.createElement('div');
+    empty.style.cssText =
+      'grid-column:1/-1;text-align:center;padding:40px;color:#9296ad';
+    empty.textContent = 'Kategori tidak ditemukan.';
+    grid.appendChild(empty);
     return;
   }
 
@@ -946,67 +954,70 @@ function renderAccounts() {
     const isClaimed = account.status === 'claimed';
 
     const card = document.createElement('article');
-    card.className = 'account';
+    card.className = `account ${account.type}`;
 
-    card.innerHTML = `
-      <div class="account-top">
-        <div class="account-icon">${account.icon}</div>
-        <span class="status" style="${
-          isClaimed
-            ? 'color:#c4b5fd;border-color:#a78bfa33;background:#a78bfa0b'
-            : ''
-        }">
-          ${isClaimed ? '✓ CLAIMED' : '● AVAILABLE'}
-        </span>
-      </div>
+    const top = document.createElement('div');
+    top.className = 'account-top';
 
-      <h3>${account.name}</h3>
-      <p>${account.desc}</p>
+    const icon = document.createElement('div');
+    icon.className = 'account-icon';
+    icon.textContent = account.icon;
 
-      <div class="fake-data">
-        <span>${
-          isClaimed
-            ? 'Item ditandai sudah diambil'
-            : 'Data contoh / belum diintegrasikan'
-        }</span>
-        <span>•••</span>
-      </div>
+    const status = document.createElement('span');
+    status.className = 'status';
+    status.textContent = isClaimed ? '✓ CLAIMED' : '● AVAILABLE';
 
-      <button
-        class="claim"
-        data-id="${account.id}"
-        ${isClaimed ? 'disabled' : ''}
-      >
-        ${isClaimed ? 'SUDAH DIAMBIL' : 'AMBIL ITEM ↗'}
-      </button>
-    `;
+    top.append(icon, status);
 
+    const title = document.createElement('h3');
+    title.textContent = account.name;
+
+    const desc = document.createElement('p');
+    desc.textContent = account.desc;
+
+    const count = document.createElement('div');
+    count.className = 'countbox';
+
+    const countLabel = document.createElement('span');
+    countLabel.textContent = 'Akun terdata';
+
+    const countValue = document.createElement('strong');
+    countValue.textContent = account.quantity;
+
+    count.append(countLabel, countValue);
+
+    const button = document.createElement('button');
+    button.className = 'claim';
+    button.dataset.id = account.id;
+    button.textContent = isClaimed ? 'SUDAH DIAMBIL' : 'BUKA KATEGORI ↗';
+    button.disabled = isClaimed;
+
+    card.append(top, title, desc, count, button);
     grid.appendChild(card);
   }
 }
 
-// DEMO CLAIM BUTTON
+// DEMO CATEGORY BUTTON
 grid.addEventListener('click', event => {
   const button = event.target.closest('[data-id]');
-
   if (!button) return;
 
   const account = accounts.find(
     item => item.id === Number(button.dataset.id)
   );
 
-  if (!account || account.status === 'claimed') return;
+  if (!account) return;
 
-  account.status = 'claimed';
-  renderAccounts();
-
-  notify('Demo berhasil: ' + account.name + ' ditandai sudah diambil.');
+  notify(
+    'Kategori ' + account.name +
+    ' dipilih. Data akun belum diimpor.'
+  );
 });
 
 // SEARCH
 searchInput.addEventListener('input', renderAccounts);
 
-// FILTERS
+// FILTER
 document.querySelectorAll('.filter').forEach(button => {
   button.addEventListener('click', () => {
     activeFilter = button.dataset.filter;
@@ -1022,18 +1033,18 @@ document.querySelectorAll('.filter').forEach(button => {
 // SHOW / HIDE PASSWORD
 document.getElementById('togglePass').addEventListener('click', () => {
   const input = document.getElementById('password');
-
   input.type = input.type === 'password' ? 'text' : 'password';
 });
 
-// DEMO LOGIN — ANY NON-EMPTY PASSWORD OPENS THE DASHBOARD
+// DEMO LOGIN ONLY
+// Password belum divalidasi oleh server.
 document.getElementById('loginForm').addEventListener('submit', event => {
   event.preventDefault();
 
   const password = document.getElementById('password');
 
   if (!password.value.trim()) {
-    notify('Masukkan sandi akses terlebih dahulu.');
+    notify('Masukkan password terlebih dahulu.');
     return;
   }
 
@@ -1042,8 +1053,7 @@ document.getElementById('loginForm').addEventListener('submit', event => {
 
   window.scrollTo({ top: 0, behavior: 'smooth' });
 
-  notify('Preview dibuka — autentikasi belum diaktifkan.');
-
+  notify('Dashboard demo berhasil dibuka.');
   renderAccounts();
 });
 </script>
