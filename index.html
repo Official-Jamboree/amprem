@@ -1,0 +1,1051 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#090a10">
+<title>AM PREMIUM — Account Vault</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #080910;
+  --panel: #11131d;
+  --line: #ffffff18;
+  --text: #f5f6ff;
+  --muted: #9095aa;
+  --purple: #a78bfa;
+  --cyan: #71e6e2;
+  --green: #8df0c0;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--text);
+  background:
+    radial-gradient(ellipse at 15% 0%, #5b21b633, transparent 40%),
+    radial-gradient(ellipse at 90% 30%, #0e749022, transparent 35%),
+    var(--bg);
+  font-family: 'DM Sans', sans-serif;
+  overflow-x: hidden;
+}
+
+button, input { font: inherit; }
+button { cursor: pointer; }
+
+#particles {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.topbar {
+  height: 76px;
+  padding: 0 clamp(18px, 5vw, 72px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--line);
+  background: #090a10c9;
+  backdrop-filter: blur(18px);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font: 700 14px 'Space Grotesk', sans-serif;
+  letter-spacing: .08em;
+}
+
+.brand em {
+  color: #b9a4ff;
+  font-style: normal;
+}
+
+.brandmark {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #c4b5fd77;
+  border-radius: 13px;
+  color: #ded4ff;
+  font-size: 21px;
+  background: linear-gradient(140deg, #8b5cf633, #67e8f933);
+  box-shadow: 0 0 25px #8b5cf822;
+}
+
+.system {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: #a9aec2;
+  font-size: 10px;
+  letter-spacing: .12em;
+}
+
+.dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin-right: 6px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 12px var(--green);
+}
+
+main {
+  position: relative;
+  z-index: 1;
+  max-width: 1180px;
+  margin: auto;
+  padding: 0 26px;
+}
+
+.login-view {
+  min-height: calc(100vh - 145px);
+  display: grid;
+  grid-template-columns: 1.05fr .95fr;
+  align-items: center;
+  gap: 45px;
+  padding: 40px 0 60px;
+}
+
+.kicker {
+  color: #b9a4ff;
+  font-size: 10px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.kicker::before {
+  content: "";
+  width: 28px;
+  height: 1px;
+  background: var(--purple);
+}
+
+h1 {
+  margin: 23px 0;
+  font: 700 clamp(45px, 6vw, 78px)/.99 'Space Grotesk', sans-serif;
+  letter-spacing: -.065em;
+}
+
+.gradient {
+  color: var(--purple);
+  background: linear-gradient(100deg, #e8dcff, #a78bfa 48%, #71e6e2);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.intro {
+  max-width: 455px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.secureline {
+  margin-top: 25px;
+  color: #a1a6ba;
+  font-size: 11px;
+}
+
+.login-card {
+  position: relative;
+  width: 100%;
+  max-width: 430px;
+  justify-self: end;
+  padding: 30px;
+  overflow: hidden;
+  border: 1px solid #ffffff1b;
+  border-radius: 24px;
+  background: linear-gradient(145deg, #191a2aee, #10111bd9);
+  box-shadow: 0 30px 100px #0008, inset 0 1px #ffffff0c;
+}
+
+.login-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 15%;
+  width: 70%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #c4b5fd, transparent);
+  box-shadow: 0 0 30px var(--purple);
+}
+
+.card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.card-head small {
+  color: #999fb6;
+  font-size: 10px;
+  letter-spacing: .13em;
+}
+
+.secure-badge {
+  padding: 7px 9px;
+  border: 1px solid #6ee7b744;
+  border-radius: 99px;
+  color: #a5f3d0;
+  font-size: 9px;
+}
+
+.orb-stage {
+  height: 175px;
+  display: grid;
+  place-items: center;
+  position: relative;
+  margin: 8px 0 20px;
+}
+
+.orb {
+  width: 112px;
+  height: 112px;
+  border-radius: 50%;
+  position: relative;
+  background: radial-gradient(
+    circle at 30% 24%,
+    #f4edff 0,
+    #c4b5fd 8%,
+    #8b5cf6 26%,
+    #393075 53%,
+    #10111b 76%
+  );
+  box-shadow:
+    inset -12px -14px 25px #05050dba,
+    inset 7px 6px 18px #ffffff72,
+    0 0 38px #8b5cf688,
+    0 0 100px #6d28d933;
+  animation: float 5s ease-in-out infinite;
+}
+
+.orb::after {
+  content: "";
+  position: absolute;
+  width: 54px;
+  height: 20px;
+  left: 16px;
+  top: 16px;
+  border-radius: 50%;
+  background: #ffffff77;
+  filter: blur(12px);
+  transform: rotate(-30deg);
+}
+
+.orbit {
+  position: absolute;
+  width: 190px;
+  height: 65px;
+  border: 1px solid #b6a5ff7a;
+  border-radius: 50%;
+  transform: rotate(-22deg);
+  animation: spin 18s linear infinite;
+}
+
+.orbit::after {
+  content: "";
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  top: 10px;
+  right: 28px;
+  border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 15px var(--cyan);
+}
+
+.orbit.two {
+  width: 160px;
+  height: 115px;
+  border-color: #71e6e244;
+  animation-direction: reverse;
+  animation-duration: 24s;
+}
+
+.field-label {
+  display: block;
+  margin: 0 0 9px;
+  color: #c5c7d6;
+  font-size: 11px;
+}
+
+.inputwrap {
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+  border: 1px solid #ffffff1b;
+  border-radius: 12px;
+  background: #090a12;
+  transition: .2s;
+}
+
+.inputwrap:focus-within {
+  border-color: #a78bfa99;
+  box-shadow: 0 0 0 3px #a78bfa13;
+}
+
+.inputwrap input {
+  flex: 1;
+  min-width: 0;
+  padding: 15px 10px;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: white;
+  font-size: 13px;
+}
+
+.inputwrap input::placeholder { color: #666b80; }
+
+.eye {
+  padding: 5px;
+  border: 0;
+  background: transparent;
+  color: #a9aec2;
+}
+
+.primary {
+  width: 100%;
+  margin-top: 14px;
+  padding: 15px;
+  border: 0;
+  border-radius: 12px;
+  background: linear-gradient(100deg, #c4b5fd, #8b8cf7 58%, #71e6e2);
+  color: #11111a;
+  font-size: 12px;
+  font-weight: 700;
+  box-shadow: 0 8px 28px #8b5cf827;
+  transition: .2s;
+}
+
+.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 35px #8b5cf844;
+}
+
+.microcopy {
+  margin-top: 17px;
+  text-align: center;
+  color: #6f758d;
+  font-size: 9px;
+  letter-spacing: .05em;
+}
+
+/* DASHBOARD */
+
+.dash {
+  display: none;
+  padding: 42px 0 70px;
+}
+
+.dash.active { display: block; }
+.login-view.hidden { display: none; }
+
+.dash-title {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.dash-title h2 {
+  margin: 13px 0 10px;
+  font: 600 clamp(30px, 4vw, 46px)/1.1 'Space Grotesk', sans-serif;
+  letter-spacing: -.045em;
+}
+
+.dash-title p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.session {
+  padding: 10px 13px;
+  border: 1px solid #6ee7b733;
+  border-radius: 99px;
+  color: #9af0c9;
+  background: #6ee7b70b;
+  font-size: 10px;
+  white-space: nowrap;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: 25px;
+}
+
+.stat {
+  padding: 19px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: linear-gradient(145deg, #161827, #10111a);
+}
+
+.stat small {
+  color: #888ea7;
+  font-size: 10px;
+  letter-spacing: .13em;
+}
+
+.stat strong {
+  display: block;
+  margin-top: 10px;
+  font: 600 29px 'Space Grotesk', sans-serif;
+}
+
+.stat strong span {
+  color: #8b91a8;
+  font: 400 12px 'DM Sans', sans-serif;
+}
+
+.stat .accent { color: #bcaaff; }
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 22px 0 16px;
+}
+
+.search {
+  flex: 1;
+  min-width: 200px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 13px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #11131d;
+}
+
+.search input {
+  flex: 1;
+  min-width: 0;
+  padding: 13px 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: white;
+  font-size: 12px;
+}
+
+.filters {
+  display: flex;
+  gap: 8px;
+}
+
+.filter {
+  padding: 11px 13px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #11131d;
+  color: #aeb3c6;
+  font-size: 11px;
+}
+
+.filter.active {
+  border-color: #a78bfa66;
+  background: #a78bfa18;
+  color: #d8ccff;
+}
+
+.account-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.account {
+  position: relative;
+  overflow: hidden;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 17px;
+  background: linear-gradient(145deg, #151725, #10111a);
+  transition: .22s;
+}
+
+.account:hover {
+  transform: translateY(-4px);
+  border-color: #a78bfa55;
+  box-shadow: 0 15px 40px #0004;
+}
+
+.account-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.account-icon {
+  width: 39px;
+  height: 39px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #a78bfa22;
+  border-radius: 12px;
+  background: linear-gradient(145deg, #a78bfa26, #71e6e215);
+  color: #c8b7ff;
+  font-size: 17px;
+}
+
+.status {
+  padding: 6px 8px;
+  border: 1px solid #6ee7b72a;
+  border-radius: 99px;
+  background: #6ee7b70d;
+  color: #91efc0;
+  font-size: 9px;
+  letter-spacing: .04em;
+}
+
+.account h3 {
+  margin: 0 0 6px;
+  font: 600 16px 'Space Grotesk', sans-serif;
+}
+
+.account p {
+  margin: 0 0 17px;
+  color: #8c92a9;
+  font-size: 11px;
+}
+
+.fake-data {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 13px;
+  padding: 10px;
+  border: 1px dashed #ffffff1c;
+  border-radius: 9px;
+  background: #090a1199;
+  color: #858ba2;
+  font-size: 10px;
+}
+
+.claim {
+  width: 100%;
+  padding: 11px;
+  border: 1px solid #a78bfa55;
+  border-radius: 10px;
+  background: #a78bfa12;
+  color: #d7cbff;
+  font-size: 11px;
+  font-weight: 600;
+  transition: .2s;
+}
+
+.claim:hover { background: #a78bfa22; }
+.claim:disabled { opacity: .5; cursor: not-allowed; }
+
+.notice {
+  margin-top: 20px;
+  padding: 14px 16px;
+  border: 1px solid #a78bfa28;
+  border-radius: 14px;
+  background: #a78bfa0a;
+  color: #aaaec2;
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+.notice strong { color: #d7cbff; }
+
+footer {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 22px clamp(18px, 5vw, 72px);
+  border-top: 1px solid var(--line);
+  color: #656b82;
+  font-size: 10px;
+  letter-spacing: .09em;
+}
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  z-index: 20;
+  max-width: 90vw;
+  padding: 13px 18px;
+  border: 1px solid #a78bfa66;
+  border-radius: 12px;
+  background: #171927;
+  box-shadow: 0 18px 60px #0008;
+  color: white;
+  font-size: 12px;
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 20px);
+  transition: .25s;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-11px); }
+}
+
+@keyframes spin {
+  to { transform: rotate(338deg); }
+}
+
+@media (max-width: 850px) {
+  .login-view {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding-top: 45px;
+  }
+
+  .copy { text-align: center; }
+  .kicker { justify-content: center; }
+  .intro { margin: auto; }
+  .secureline { text-align: center; }
+  .login-card { justify-self: center; max-width: 480px; }
+  .account-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+  .dash-title {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 560px) {
+  .topbar { height: 67px; padding: 0 16px; }
+  .system { font-size: 9px; gap: 8px; }
+  .brand { font-size: 12px; }
+  .brandmark { width: 34px; height: 34px; }
+  .login-view { padding: 38px 0; }
+  .login-card { padding: 22px; }
+  .orb-stage { height: 145px; }
+  .stats { grid-template-columns: 1fr; gap: 9px; }
+
+  .stat {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+  }
+
+  .stat strong { margin: 0; font-size: 23px; }
+  .account-grid { grid-template-columns: 1fr; }
+  .dash { padding-top: 32px; }
+  .toolbar { align-items: stretch; }
+  .filters { width: 100%; }
+  .filter { flex: 1; }
+  footer { justify-content: center; text-align: center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+</style>
+</head>
+
+<body>
+<canvas id="particles"></canvas>
+
+<header class="topbar">
+  <div class="brand">
+    <div class="brandmark">✦</div>
+    <div>AM <em>PREMIUM</em></div>
+  </div>
+  <div class="system">
+    <span><i class="dot"></i>SYSTEM ONLINE</span>
+    <span>V. 2.0</span>
+  </div>
+</header>
+
+<main>
+  <section class="login-view" id="loginView">
+    <div class="copy">
+      <div class="kicker">Private access · Member portal</div>
+
+      <h1>
+        YOUR ACCESS<br>
+        TO THE <span class="gradient">EXTRA</span><br>
+        ORDINARY.
+      </h1>
+
+      <p class="intro">
+        Satu gerbang. Pengalaman premium. Masuk ke vault
+        untuk menjelajahi koleksi akun yang tersedia dalam
+        satu dashboard eksklusif.
+      </p>
+
+      <div class="secureline">
+        ◈ Protected member area · Designed for a seamless experience
+      </div>
+    </div>
+
+    <form class="login-card" id="loginForm">
+      <div class="card-head">
+        <small>AM / ACCESS GATE</small>
+        <span class="secure-badge">✦ DEMO UI</span>
+      </div>
+
+      <div class="orb-stage">
+        <div class="orbit"></div>
+        <div class="orbit two"></div>
+        <div class="orb"></div>
+      </div>
+
+      <label class="field-label" for="password">
+        Access password
+      </label>
+
+      <div class="inputwrap">
+        <span aria-hidden="true">▣</span>
+        <input
+          id="password"
+          type="password"
+          placeholder="Masukkan sandi akses..."
+          autocomplete="off"
+          required
+        >
+        <button
+          class="eye"
+          type="button"
+          id="togglePass"
+          aria-label="Tampilkan sandi"
+        >◎</button>
+      </div>
+
+      <button class="primary" type="submit">
+        ENTER THE VAULT <span style="float:right">↗</span>
+      </button>
+
+      <div class="microcopy">
+        ✧ A PRIVATE EXPERIENCE BY AM PREMIUM
+      </div>
+    </form>
+  </section>
+
+  <section class="dash" id="dashboard">
+    <div class="dash-title">
+      <div>
+        <div class="kicker">Member dashboard</div>
+        <h2>Welcome to the <span class="gradient">Vault.</span></h2>
+        <p>Semua yang kamu butuhkan, tersusun dalam satu tempat.</p>
+      </div>
+      <div class="session">● DEMO PREVIEW MODE</div>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <small>ACCOUNT TYPES</small>
+        <strong>03 <span>categories</span></strong>
+      </div>
+
+      <div class="stat">
+        <small>DEMO INVENTORY</small>
+        <strong class="accent" id="totalCount">09 <span>sample cards</span></strong>
+      </div>
+
+      <div class="stat">
+        <small>VAULT STATUS</small>
+        <strong style="color:var(--green)">ONLINE</strong>
+      </div>
+    </div>
+
+    <div class="toolbar">
+      <label class="search">
+        <span aria-hidden="true">⌕</span>
+        <input
+          id="search"
+          placeholder="Cari kategori akun..."
+          aria-label="Cari kategori akun"
+        >
+      </label>
+
+      <div class="filters">
+        <button class="filter active" data-filter="all">Semua</button>
+        <button class="filter" data-filter="available">Tersedia</button>
+        <button class="filter" data-filter="claimed">Diambil</button>
+      </div>
+    </div>
+
+    <div class="account-grid" id="accountGrid"></div>
+
+    <div class="notice">
+      <strong>PREVIEW NOTICE</strong><br>
+      Kartu ini menggunakan data contoh. Sistem login dan klaim
+      belum terhubung ke server atau file akun asli.
+    </div>
+  </section>
+</main>
+
+<footer>
+  <span>© 2026 AM PREMIUM</span>
+  <span>PRIVATE ACCESS EXPERIENCE</span>
+  <span>DESIGNED FOR THE EXTRAORDINARY ✦</span>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+// PARTICLE BACKGROUND
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+let particles = [];
+
+function resizeCanvas() {
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+  canvas.width = innerWidth * dpr;
+  canvas.height = innerHeight * dpr;
+  canvas.style.width = innerWidth + 'px';
+  canvas.style.height = innerHeight + 'px';
+
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+  particles = Array.from({
+    length: Math.min(85, Math.floor(innerWidth / 14))
+  }, () => ({
+    x: Math.random() * innerWidth,
+    y: Math.random() * innerHeight,
+    r: Math.random() * 1.3 + .3,
+    alpha: Math.random() * .5 + .08,
+    speed: Math.random() * .22 + .04
+  }));
+}
+
+function drawParticles() {
+  ctx.clearRect(0, 0, innerWidth, innerHeight);
+
+  for (const p of particles) {
+    p.y -= p.speed;
+
+    if (p.y < 0) {
+      p.y = innerHeight;
+      p.x = Math.random() * innerWidth;
+    }
+
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(193,174,255,${p.alpha})`;
+    ctx.fill();
+  }
+
+  requestAnimationFrame(drawParticles);
+}
+
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
+drawParticles();
+
+// SAMPLE INVENTORY — REPLACE WITH AUTHORIZED DATA LATER
+const accounts = [
+  { id: 1, name: 'AM Plus', desc: 'Premium access', icon: '✦', status: 'available' },
+  { id: 2, name: 'AM Ultra', desc: 'Premium access', icon: '◈', status: 'available' },
+  { id: 3, name: 'AM Studio', desc: 'Creative access', icon: '✧', status: 'available' },
+  { id: 4, name: 'Vault Alpha', desc: 'Member access', icon: '⬡', status: 'available' },
+  { id: 5, name: 'Vault Nova', desc: 'Member access', icon: '✺', status: 'available' },
+  { id: 6, name: 'Vault Prime', desc: 'Member access', icon: '✦', status: 'available' },
+  { id: 7, name: 'Special Pack', desc: 'Limited access', icon: '◇', status: 'available' },
+  { id: 8, name: 'Elite Pack', desc: 'Limited access', icon: '✧', status: 'available' },
+  { id: 9, name: 'Mystery Drop', desc: 'Surprise access', icon: '✷', status: 'available' }
+];
+
+const grid = document.getElementById('accountGrid');
+const searchInput = document.getElementById('search');
+let activeFilter = 'all';
+let toastTimer;
+
+function notify(message) {
+  const toast = document.getElementById('toast');
+
+  toast.textContent = message;
+  toast.classList.add('show');
+
+  clearTimeout(toastTimer);
+
+  toastTimer = setTimeout(() => {
+    toast.classList.remove('show');
+  }, 2600);
+}
+
+function renderAccounts() {
+  const query = searchInput.value.toLowerCase().trim();
+
+  const filtered = accounts.filter(account => {
+    const matchesFilter =
+      activeFilter === 'all' || account.status === activeFilter;
+
+    const matchesSearch =
+      (account.name + ' ' + account.desc)
+        .toLowerCase()
+        .includes(query);
+
+    return matchesFilter && matchesSearch;
+  });
+
+  grid.innerHTML = '';
+
+  if (filtered.length === 0) {
+    grid.innerHTML = `
+      <div style="
+        grid-column:1/-1;
+        text-align:center;
+        padding:45px;
+        color:#858ba3;
+        border:1px dashed #ffffff22;
+        border-radius:15px
+      ">
+        Tidak ada item yang cocok dengan pencarianmu.
+      </div>
+    `;
+    return;
+  }
+
+  for (const account of filtered) {
+    const isClaimed = account.status === 'claimed';
+
+    const card = document.createElement('article');
+    card.className = 'account';
+
+    card.innerHTML = `
+      <div class="account-top">
+        <div class="account-icon">${account.icon}</div>
+        <span class="status" style="${
+          isClaimed
+            ? 'color:#c4b5fd;border-color:#a78bfa33;background:#a78bfa0b'
+            : ''
+        }">
+          ${isClaimed ? '✓ CLAIMED' : '● AVAILABLE'}
+        </span>
+      </div>
+
+      <h3>${account.name}</h3>
+      <p>${account.desc}</p>
+
+      <div class="fake-data">
+        <span>${
+          isClaimed
+            ? 'Item ditandai sudah diambil'
+            : 'Data contoh / belum diintegrasikan'
+        }</span>
+        <span>•••</span>
+      </div>
+
+      <button
+        class="claim"
+        data-id="${account.id}"
+        ${isClaimed ? 'disabled' : ''}
+      >
+        ${isClaimed ? 'SUDAH DIAMBIL' : 'AMBIL ITEM ↗'}
+      </button>
+    `;
+
+    grid.appendChild(card);
+  }
+}
+
+// DEMO CLAIM BUTTON
+grid.addEventListener('click', event => {
+  const button = event.target.closest('[data-id]');
+
+  if (!button) return;
+
+  const account = accounts.find(
+    item => item.id === Number(button.dataset.id)
+  );
+
+  if (!account || account.status === 'claimed') return;
+
+  account.status = 'claimed';
+  renderAccounts();
+
+  notify('Demo berhasil: ' + account.name + ' ditandai sudah diambil.');
+});
+
+// SEARCH
+searchInput.addEventListener('input', renderAccounts);
+
+// FILTERS
+document.querySelectorAll('.filter').forEach(button => {
+  button.addEventListener('click', () => {
+    activeFilter = button.dataset.filter;
+
+    document.querySelectorAll('.filter').forEach(item => {
+      item.classList.toggle('active', item === button);
+    });
+
+    renderAccounts();
+  });
+});
+
+// SHOW / HIDE PASSWORD
+document.getElementById('togglePass').addEventListener('click', () => {
+  const input = document.getElementById('password');
+
+  input.type = input.type === 'password' ? 'text' : 'password';
+});
+
+// DEMO LOGIN — ANY NON-EMPTY PASSWORD OPENS THE DASHBOARD
+document.getElementById('loginForm').addEventListener('submit', event => {
+  event.preventDefault();
+
+  const password = document.getElementById('password');
+
+  if (!password.value.trim()) {
+    notify('Masukkan sandi akses terlebih dahulu.');
+    return;
+  }
+
+  document.getElementById('loginView').classList.add('hidden');
+  document.getElementById('dashboard').classList.add('active');
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  notify('Preview dibuka — autentikasi belum diaktifkan.');
+
+  renderAccounts();
+});
+</script>
+</body>
+</html>
